@@ -1,0 +1,9 @@
+export { default as IconMenu } from "./iconMenu";
+export { default as IconWhatsapp } from "./iconWhatsapp";
+export { default as IconLinkedin } from "./iconLinkedin";
+export { default as IconGithub } from "./iconGithub";
+export { default as IconHome } from "./iconHome";
+export { default as IconPerson } from "./iconPerson";
+export { default as IconItems } from "./iconItems";
+export { default as IconContact } from "./iconContact";
+export { default as IconClose } from "./iconClose";
