@@ -46,7 +46,7 @@ const SideNav = ({ sidenav, setSidenav }: SideNavProps) => {
   };
   return (
     <div
-      className="fixed top-0 left-0 w-full transition-all  h-full bg-black-transparent"
+      className="fixed top-0 left-0 w-full transition-all  h-screen bg-black-transparent"
       style={{
         opacity: sidenav ? "1" : "0",
         visibility: sidenav ? "visible" : "hidden",
