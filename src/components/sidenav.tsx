@@ -46,7 +46,7 @@ const SideNav = ({ sidenav, setSidenav }: SideNavProps) => {
   };
   return (
     <div
-      className="fixed top-0 left-0 w-full transition-all  h-screen bg-black-transparent"
+      className="fixed top-0 left-0 w-full transition-all  h-full bg-black-transparent"
       style={{
         opacity: sidenav ? "1" : "0",
         visibility: sidenav ? "visible" : "hidden",
@@ -54,7 +54,7 @@ const SideNav = ({ sidenav, setSidenav }: SideNavProps) => {
       onClick={handleToggleSideNav}
     >
       <div
-        className="absolute transition-transform top-0 left-0 transform -translate-x-full w-3/5 bg-white h-screen py-5 px-5"
+        className="absolute transition-transform top-0 left-0 transform -translate-x-full w-3/5 bg-white h-full py-5 px-5"
         style={{ transform: sidenav ? `translateX(0%)` : `translateX(-100%)` }}
         ref={refSideNav}
       >
