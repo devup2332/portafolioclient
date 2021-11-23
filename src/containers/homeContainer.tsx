@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import About from "../components/about";
 import BannerHome from "../components/bannerHome";
+import ProjectsHome from "../components/projectsHome";
 import SideNav from "../components/sidenav";
 
 export interface HomeContainerProps {
@@ -14,6 +15,7 @@ const HomeContainer = ({ sidenav, setSidenav }: HomeContainerProps) => {
       <SideNav setSidenav={setSidenav} sidenav={sidenav} />
       <BannerHome />
       <About />
+      <ProjectsHome />
     </div>
   );
 };

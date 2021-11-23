@@ -13,6 +13,7 @@ module.exports = {
     },
     boxShadow: {
       sm: "0px 5px 5px 0px rgba(0,0,0,0.3)",
+      xl: "0px 5px 5px 0px rgba(0,0,0,0.5)",
     },
     fontSIze: {
       "5xl": "45px",

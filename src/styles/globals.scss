@@ -21,8 +21,11 @@ h1 {
 .sidenav-item {
   cursor: pointer;
   span {
-    font-family: "Roboto Mono", sans-serif;
     font-weight: 400;
     font-size: 12px;
   }
+}
+
+.text-font-mono {
+  font-family: "Roboto Mono", sans-serif;
 }
