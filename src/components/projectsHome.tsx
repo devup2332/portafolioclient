@@ -4,7 +4,7 @@ import { IconGithub, IconInfo, IconWeb } from "./icons";
 
 const ProjectsHome = () => {
   return (
-    <div className="py-10 w-5/6 m-auto">
+    <div className="py-10 w-5/6 m-auto grid gap-5">
       <h1 className="text-5xl text-center">PROJECTS</h1>
       <div className="mt-10 grid gap-5">
         {data.map((project, index) => {
@@ -31,15 +31,15 @@ const ProjectsHome = () => {
                 })}
               </div>
               <div className="flex justify-between items-center ">
-                <h1 className='text-base'>{project.name}</h1>
+                <h1 className="text-base">{project.name}</h1>
                 <div className="flex gap-2">
-                  <button className="group bg-transparent py-2.5 px-4 rounded-lg transition-all hover:bg-primary ">
+                  <button className="group bg-button-2 py-2.5 px-4 rounded-lg transition-all hover:bg-primary ">
                     <IconInfo className="transition-all stroke-current group-hover:text-white " />
                   </button>
-                  <button className="group bg-transparent py-2.5 px-4 rounded-lg transition-all hover:bg-primary ">
+                  <button className="group bg-button-2 py-2.5 px-4 rounded-lg transition-all hover:bg-primary ">
                     <IconWeb className="fill-current transition-all text-black group-hover:text-white" />
                   </button>
-                  <button className="group bg-transparent py-2.5 px-4 rounded-lg transition-all hover:bg-primary ">
+                  <button className="group bg-button-2 py-2.5 px-4 rounded-lg transition-all hover:bg-primary ">
                     <IconGithub className="fill-current text-black group-hover:text-white transition-all" />
                   </button>
                 </div>
@@ -48,6 +48,13 @@ const ProjectsHome = () => {
           );
         })}
       </div>
+
+      <button
+        type="button"
+        className="justify-self-center rounded-lg bg-secondary shadow-sm w-48 px-5 py-3 text-white font-bold justify-self-center hover:shadow-xl transition-all"
+      >
+        Load More
+      </button>
     </div>
   );
 };

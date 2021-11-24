@@ -9,3 +9,6 @@ export { default as IconContact } from "./iconContact";
 export { default as IconClose } from "./iconClose";
 export { default as IconWeb } from "./iconWeb";
 export { default as IconInfo } from "./iconInfo";
+export { default as IconEmail } from "./iconEmail";
+export { default as IconPhone } from "./iconPhone";
+export { default as IconMap } from "./iconMap";
