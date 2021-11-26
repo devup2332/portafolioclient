@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useRef } from "react";
+import React, { useRef } from "react";
 import {
   IconContact,
   IconGithub,
