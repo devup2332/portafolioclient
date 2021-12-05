@@ -11,7 +11,7 @@ const Header = ({ setSidenav, sidenav }: HeaderProps) => {
   };
   return (
     <div className=" bg-primary shadow-sm fixed top-0 left-0 w-full h-16 flex z-1 items-center">
-      <div className="text-white flex w-4/5 m-auto justify-between ">
+      <div className="text-white flex w-4/5 m-auto justify-between max-w-1180">
         <h1 className="font-bold text-xl">DROJAS</h1>
         <ul className="hidden">
           <li>Home</li>

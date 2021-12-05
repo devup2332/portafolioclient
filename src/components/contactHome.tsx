@@ -50,7 +50,7 @@ const ContactHome = () => {
         </div>
         <div className="flex  ">
           <IconPhone className="fill-current text-secondary" />
-          <p className="ml-3">+51 946 429 325</p>
+          <p className="ml-3">+51 976 469 908</p>
         </div>
         <div className="flex ">
           <IconEmail className="fill-current text-secondary" />
