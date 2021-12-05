@@ -10,31 +10,31 @@ const ContactHome = () => {
           <input
             type="text"
             placeholder="Full Name"
-            className="input-contact text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full"
+            className="font-robotoMono text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full"
           />
           <input
             type="text"
             placeholder="Phone"
-            className="input-contact text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full"
+            className="font-robotoMono text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full"
           />
           <input
             type="text"
             placeholder="Subject"
-            className="input-contact text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full"
+            className="font-robotoMono text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full"
           />
 
           <input
             type="text"
             placeholder="Email"
-            className="input-contact text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full"
+            className="font-robotoMono text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full"
           />
           <textarea
             placeholder="Message"
-            className="input-contact text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full h-40"
+            className="font-robotoMono text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full h-40"
           />
           <button
             type="submit"
-            className="w-full block bg-secondary text-white text-sm rounded-md py-2.5 shadow-sm transition-all hover:shadow-xl font-bold text-font-mono"
+            className="w-full block bg-secondary text-white text-sm rounded-md py-2.5 shadow-sm transition-all hover:shadow-xl font-bold font-robotoMono"
           >
             Send Message
           </button>

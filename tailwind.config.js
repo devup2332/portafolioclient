@@ -2,6 +2,10 @@ module.exports = {
     purge: [],
     darkMode: false, // or 'media' or 'class'
     theme: {
+        fontFamily: {
+            roboto: ["Roboto", "sans-serif"],
+            robotoMono: ["Roboto Mono", "monospace"],
+        },
         colors: {
             primary: "#031927",
             secondary: "#D10000",
@@ -16,7 +20,7 @@ module.exports = {
             xl: "0px 5px 5px 0px rgba(0,0,0,0.5)",
         },
         fontSize: {
-            "base": "14px",
+            base: "14px",
             "3xl": "25px",
             "4xl": "30px",
             "5xl": "45px",

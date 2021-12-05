@@ -51,7 +51,7 @@ const ProjectsHome = () => {
 
       <button
         type="button"
-        className="justify-self-center rounded-lg bg-secondary shadow-sm w-48 px-5 py-3 text-white font-bold justify-self-center hover:shadow-xl transition-all"
+        className="font-robotoMono justify-self-center rounded-lg bg-secondary shadow-sm w-48 px-5 py-3 text-white font-bold justify-self-center hover:shadow-xl transition-all"
       >
         Load More
       </button>
