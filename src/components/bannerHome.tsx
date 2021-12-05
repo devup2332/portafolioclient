@@ -3,14 +3,16 @@ import { BannerVector } from "./vectors";
 
 const BannerHome = () => {
     return (
-        <div className=" lg:bg-white h-screen max-h-90 flex justify-center items-center text-white text-center ">
+        <div className="lg:bg-white h-screen lg:max-h-90 flex justify-center items-center text-white text-center ">
             <div className="absolute z-0 max-w-1180 lg:flex lg:w-4/5 xl:gap-6">
                 <div className="flex flex-col justify-center items-center  lg:items-start gap-8 lg:w-2/4 lg:h-auto ">
-                    <h1 className="text-5xl lg:text-black lg:text-7xl lg:font-semibold lg:text-left xl:text-8xl">DIEGO ROJAS</h1>
+                    <h1 className="text-5xl lg:text-black lg:text-7xl lg:font-semibold lg:text-left xl:text-8xl">
+                        DIEGO ROJAS
+                    </h1>
                     <p className="font-bold lg:text-black lg:text-lg xl:text-3xl">Software Developer</p>
                     <button
                         type="button"
-                        className="py-3 px-5 hover:text-black bg-secondary rounded-lg w-48 font-bold justify-self-center shadow-sm outline-none hover:bg-white transition-all"
+                        className="py-3 px-5 hover:shadow-xl text-font-mono bg-secondary rounded-lg w-48 font-bold justify-self-center shadow-sm outline-none  transition-all"
                     >
                         Contact Me
                     </button>

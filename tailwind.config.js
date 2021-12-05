@@ -16,14 +16,16 @@ module.exports = {
             xl: "0px 5px 5px 0px rgba(0,0,0,0.5)",
         },
         fontSize: {
+            "base": "14px",
             "3xl": "25px",
+            "4xl": "30px",
             "5xl": "45px",
             "7xl": "65px",
             "8xl": "90px",
             lg: "20px",
         },
         maxHeight: {
-            90: "80vh",
+            90: "90vh",
         },
         maxWidth: {
             1180: "1180px",
