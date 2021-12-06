@@ -3,7 +3,7 @@ import { IconGithub, IconLinkedin, IconWhatsapp } from "./icons";
 
 const FooterHome = () => {
   return (
-    <div className="bg-primary py-5">
+    <div className="bg-primary py-5 lg:mt-20">
       <div className="w-5/6 m-auto text-white grid gap-10">
         <div className="flex  justify-between">
           <h1 className="font-extrabold">DROJAS</h1>
