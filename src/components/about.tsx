@@ -9,7 +9,7 @@ const About = () => {
       </div>
       <div className='justify-center grid gap-4 lg:w-2/4 lg:flex lg:flex-col lg:justify-center  lg:items-center lg:gap-6'>
         <h1 className="text-5xl text-center font-roboto lg:self-end lg:text-7xl xl:text-8xl">ABOUT ME</h1>
-        <p className="text-center font-robotoMono text-sm leading-6 lg:text-right">
+        <p className="text-center font-robotoMono text-sm leading-6 lg:text-right lg:leading-10">
           Sed ut perspiciatis unde omnis iste natus error sit voluptatem
           accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
           ab illo inventore veritatis et quasi architecto beatae

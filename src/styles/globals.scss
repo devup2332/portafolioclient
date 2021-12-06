@@ -1,28 +1,53 @@
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 .sidenav-item {
-  cursor: pointer;
-  span {
-    font-weight: 400;
-    font-size: 14px;
-  }
+    cursor: pointer;
+    span {
+        font-weight: 400;
+        font-size: 14px;
+    }
 }
 
 .about-vector {
-  position: relative;
+    position: relative;
 
-  &::before {
-    content: "";
-    position: absolute;
-    width: 150%;
-    height: 100%;
-    background:#031927;
-    top: 0px;
-    left: -110%;
-    z-index: -1;
-  }
+    &::before {
+        content: "";
+        position: absolute;
+        width: 150%;
+        height: 100%;
+        background: #031927;
+        top: 0px;
+        left: -110%;
+        z-index: -1;
+    }
+}
+
+.projects-classes {
+    position: relative;
+
+    &::before {
+        content: "";
+        display: none;
+        position: absolute;
+        width: 1000px;
+        border-radius: 50%;
+        background: #031927;
+        height: 1000px;
+        right: -70%;
+        z-index: -1;
+        top: 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .projects-classes {
+        &::before {
+            display: block;
+        }
+    }
 }

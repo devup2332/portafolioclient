@@ -20,6 +20,7 @@ module.exports = {
             xl: "0px 5px 5px 0px rgba(0,0,0,0.5)",
         },
         fontSize: {
+            xs: "13px",
             base: "14px",
             "3xl": "25px",
             "4xl": "30px",
@@ -30,6 +31,7 @@ module.exports = {
         },
         maxHeight: {
             90: "90vh",
+            225: "225px",
         },
         maxWidth: {
             1180: "1180px",

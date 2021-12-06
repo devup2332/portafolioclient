@@ -13,7 +13,7 @@ export interface HomeContainerProps {
 
 const HomeContainer = ({ sidenav, setSidenav }: HomeContainerProps) => {
   return (
-    <div>
+    <div className='overflow-hidden'>
       <SideNav setSidenav={setSidenav} sidenav={sidenav} />
       <BannerHome />
       <About />
