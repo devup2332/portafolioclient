@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap");
-
 * {
   padding: 0;
   margin: 0;
@@ -14,18 +12,17 @@
   }
 }
 
-//.text-font-mono {
-  //font-family: "Roboto Mono", sans-serif;
-//}
+.about-vector {
+  position: relative;
 
-//.input-contact {
-  //font-family: "Roboto Mono", sans-serif;
-//}
-
-//.title-size-custom {
-  //font-size: 40px;
-//}
-
-//.text-size-custom {
-  //font-size: 1rem;
-//}
+  &::before {
+    content: "";
+    position: absolute;
+    width: 150%;
+    height: 100%;
+    background:#031927;
+    top: 0px;
+    left: -110%;
+    z-index: -1;
+  }
+}
