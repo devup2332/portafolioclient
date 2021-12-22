@@ -8,7 +8,7 @@ export const useGlobal = () => {
 };
 
 const GlobalContextProvider = ({ children }: any) => {
-  const test = "Works";
+  const test = "Works1";
   return (
     <GlobalContext.Provider value={{ test }}>{children}</GlobalContext.Provider>
   );
