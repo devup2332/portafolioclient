@@ -1,4 +1,7 @@
-import React from "react";
+import React  from "react";
+import {whatsappLink} from "../lib/utils/whatsappLink";
+import {whatsappMessage} from "../lib/utils/whatsappMessage";
+import { useGlobal } from "../providers/GlobalProviders";
 import { IconGithub, IconLinkedin, IconMenu, IconWhatsapp } from "./icons";
 
 export interface HeaderProps {
@@ -6,9 +9,16 @@ export interface HeaderProps {
     sidenav: boolean;
 }
 const Header = ({ setSidenav, sidenav }: HeaderProps) => {
+    const { user } = useGlobal();
     const toggleSideNav = () => {
         setSidenav(!sidenav);
     };
+    const handleWhastapp = () => {
+        const message = whatsappMessage();
+        const url = whatsappLink(message);
+        window.open(url);
+    };
+
     return (
         <div className="bg-primary shadow-sm fixed top-0 left-0 w-full h-16 flex z-10 items-center lg:h-24">
             <div className="text-white flex w-4/5 m-auto justify-between max-w-1180">
@@ -20,13 +30,13 @@ const Header = ({ setSidenav, sidenav }: HeaderProps) => {
                     <li>Contact</li>
                 </ul>
                 <div className="hidden lg:block lg:flex lg:gap-5 lg:items-center ">
-                    <a href="">
+                    <a onClick={handleWhastapp} className="cursor-pointer">
                         <IconWhatsapp className="fill-current" />
                     </a>
-                    <a href="">
+                    <a href={user?.links?.linkedin} target="_blank">
                         <IconLinkedin className="fill-current" />
                     </a>
-                    <a href="">
+                    <a href={user.links?.github} target="_blank">
                         <IconGithub className="fill-current" />
                     </a>
                 </div>
