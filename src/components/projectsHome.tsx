@@ -1,4 +1,5 @@
 import React from "react";
+import Image from 'next/image'
 import { data } from "../data";
 import { IconGithub, IconInfo, IconWeb } from "./icons";
 
@@ -13,7 +14,7 @@ const ProjectsHome = () => {
               key={index}
               className="rounded-xl cursor-pointer overflow-hidden hover:shadow-sm transition-shadow p-5 bg-card grid gap-5"
             >
-              <img
+              <Image
                 src={project.image}
                 alt=""
                 className="block max-h-36  w-full object-cover rounded-md max-h-225"

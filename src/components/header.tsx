@@ -30,13 +30,13 @@ const Header = ({ setSidenav, sidenav }: HeaderProps) => {
                     <li>Contact</li>
                 </ul>
                 <div className="hidden lg:block lg:flex lg:gap-5 lg:items-center ">
-                    <a onClick={handleWhastapp} className="cursor-pointer">
+                    <a onClick={handleWhastapp} className="cursor-pointer" rel='noreferrer'>
                         <IconWhatsapp className="fill-current" />
                     </a>
-                    <a href={user?.links?.linkedin} target="_blank">
+                    <a href={user?.links?.linkedin} target="_blank" rel='noreferrer'>
                         <IconLinkedin className="fill-current" />
                     </a>
-                    <a href={user.links?.github} target="_blank">
+                    <a href={user.links?.github} target="_blank" rel='noreferrer'>
                         <IconGithub className="fill-current" />
                     </a>
                 </div>

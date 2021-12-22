@@ -78,13 +78,13 @@ const SideNav = ({ sidenav, setSidenav }: SideNavProps) => {
                 </ul>
 
                 <div className="absolute bottom-5 left-5 flex gap-3 ">
-                    <a onClick={handleWhastapp} className="cursor-pointer">
+                    <a onClick={handleWhastapp} className="cursor-pointer" rel="noreferrer">
                         <IconWhatsapp className="fill-current text-black w-5" />
                     </a>
-                    <a href={user.links?.linkedin} target="_blank">
+                    <a href={user.links?.linkedin} target="_blank" rel="noreferrer">
                         <IconLinkedin className="fill-current text-black w-5" />
                     </a>
-                    <a href={user.links?.github} target="_blank">
+                    <a href={user.links?.github} target="_blank" rel="noreferrer">
                         <IconGithub className="fill-current text-black w-5" />
                     </a>
                 </div>
