@@ -1,6 +1,6 @@
-import React  from "react";
-import {whatsappLink} from "../lib/utils/whatsappLink";
-import {whatsappMessage} from "../lib/utils/whatsappMessage";
+import React from "react";
+import { whatsappLink } from "../lib/utils/whatsappLink";
+import { whatsappMessage } from "../lib/utils/whatsappMessage";
 import { useGlobal } from "../providers/GlobalProviders";
 import { IconGithub, IconLinkedin, IconMenu, IconWhatsapp } from "./icons";
 
