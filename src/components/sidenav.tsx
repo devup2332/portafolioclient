@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import {verifyMobile} from "../lib/utils/devicesMobile";
 import { whatsappLink } from "../lib/utils/whatsappLink";
 import { whatsappMessage } from "../lib/utils/whatsappMessage";
 import { useGlobal } from "../providers/GlobalProviders";
@@ -43,8 +44,8 @@ const SideNav = ({ sidenav, setSidenav }: SideNavProps) => {
 
     const handleWhastapp = () => {
         const message = whatsappMessage();
-
-        const url = whatsappLink(message);
+        const isMobile = verifyMobile();
+        const url = whatsappLink(message, user?.phone, isMobile);
         window.open(url);
     };
     return (
