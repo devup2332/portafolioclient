@@ -12,3 +12,4 @@ export { default as IconInfo } from "./iconInfo";
 export { default as IconEmail } from "./iconEmail";
 export { default as IconPhone } from "./iconPhone";
 export { default as IconMap } from "./iconMap";
+export { default as IconLoading } from "./iconLoading";

@@ -14,6 +14,7 @@ module.exports = {
             card: "#F6F6F6",
             white: "#ffffff",
             black: "#000000",
+            danger: "#e31717",
         },
         boxShadow: {
             sm: "0px 5px 5px 0px rgba(0,0,0,0.3)",
@@ -34,6 +35,7 @@ module.exports = {
             225: "225px",
         },
         maxWidth: {
+            300: "300px",
             400: "400px",
             1180: "1180px",
         },
