@@ -38,7 +38,7 @@ const Header = ({ setSidenav, sidenav }: HeaderProps) => {
                     <a href={user?.links?.linkedin} target="_blank" rel="noreferrer">
                         <IconLinkedin className="fill-current" />
                     </a>
-                    <a href={user.links?.github} target="_blank" rel="noreferrer">
+                    <a href={user?.links?.github} target="_blank" rel="noreferrer">
                         <IconGithub className="fill-current" />
                     </a>
                 </div>
