@@ -12,11 +12,11 @@ export interface User {
         github: string;
         created_at: string;
     };
-    phone: string;
+    phone: number;
 }
 
 export interface newContext extends Context {
-    user: User;
+    user?: User;
 }
 
 const GlobalContext = createContext({});
@@ -29,8 +29,12 @@ export const useGlobal = () => {
 const GlobalContextProvider = ({ children }: any) => {
     const [user, setUser] = useState({});
     const getProfile = async () => {
-        const response = await axios.get(`${environments.API_URL}/api/profile/main`);
-        setUser(response.data.profile);
+        try {
+            const response = await axios.get(`${environments.API_URL}/api/profile/main`);
+            setUser(response.data.profile);
+        } catch (err: any) {
+            throw new Error(err.message);
+        }
     };
     useEffect(() => {
         getProfile();

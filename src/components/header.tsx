@@ -1,4 +1,5 @@
 import React from "react";
+import { verifyMobile } from "../lib/utils/devicesMobile";
 import { whatsappLink } from "../lib/utils/whatsappLink";
 import { whatsappMessage } from "../lib/utils/whatsappMessage";
 import { useGlobal } from "../providers/GlobalProviders";
@@ -15,7 +16,8 @@ const Header = ({ setSidenav, sidenav }: HeaderProps) => {
     };
     const handleWhastapp = () => {
         const message = whatsappMessage();
-        const url = whatsappLink(message);
+        const isMobile = verifyMobile();
+        const url = whatsappLink(message, user?.phone, isMobile);
         window.open(url);
     };
 
@@ -30,13 +32,13 @@ const Header = ({ setSidenav, sidenav }: HeaderProps) => {
                     <li>Contact</li>
                 </ul>
                 <div className="hidden lg:block lg:flex lg:gap-5 lg:items-center ">
-                    <a onClick={handleWhastapp} className="cursor-pointer" rel='noreferrer'>
+                    <a onClick={handleWhastapp} className="cursor-pointer" rel="noreferrer">
                         <IconWhatsapp className="fill-current" />
                     </a>
-                    <a href={user?.links?.linkedin} target="_blank" rel='noreferrer'>
+                    <a href={user?.links?.linkedin} target="_blank" rel="noreferrer">
                         <IconLinkedin className="fill-current" />
                     </a>
-                    <a href={user.links?.github} target="_blank" rel='noreferrer'>
+                    <a href={user.links?.github} target="_blank" rel="noreferrer">
                         <IconGithub className="fill-current" />
                     </a>
                 </div>
