@@ -18,6 +18,7 @@ const Header = ({ setSidenav, sidenav }: HeaderProps) => {
         const message = whatsappMessage();
         const isMobile = verifyMobile();
         const url = whatsappLink(message, user?.phone, isMobile);
+        console.log(url);
         window.open(url);
     };
 
