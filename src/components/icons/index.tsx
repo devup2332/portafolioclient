@@ -13,3 +13,5 @@ export { default as IconEmail } from "./iconEmail";
 export { default as IconPhone } from "./iconPhone";
 export { default as IconMap } from "./iconMap";
 export { default as IconLoading } from "./iconLoading";
+export { default as IconDashboard } from "./iconDashboard";
+export { default as IconInbox } from "./iconInbox";
