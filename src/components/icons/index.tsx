@@ -15,3 +15,5 @@ export { default as IconMap } from "./iconMap";
 export { default as IconLoading } from "./iconLoading";
 export { default as IconDashboard } from "./iconDashboard";
 export { default as IconInbox } from "./iconInbox";
+export { default as IconExit } from "./iconExit";
+export { default as IconPdf } from "./iconPdf";

@@ -32,9 +32,7 @@ const GlobalContextProvider = ({ children }: any) => {
         try {
             const response = await axios.get(`${environments.API_URL}/api/profile/main`);
             setUser(response.data.profile);
-            console.log(response.data);
         } catch (err: any) {
-            //throw new Error(err.message);
             console.log(err);
         }
     };

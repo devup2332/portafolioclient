@@ -14,6 +14,7 @@ module.exports = {
             card: "#F6F6F6",
             white: "#ffffff",
             black: "#000000",
+            hover: "#E7E7E7",
             danger: "#e31717",
         },
         boxShadow: {
@@ -36,8 +37,13 @@ module.exports = {
         },
         maxWidth: {
             300: "300px",
+            330: "330px",
             400: "400px",
             1180: "1180px",
+            1300: "1300px",
+        },
+        minWidth: {
+            280: "280px",
         },
         extend: {},
     },

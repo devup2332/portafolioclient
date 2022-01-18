@@ -21,7 +21,7 @@ const LoginContainer = () => {
             setLoading(true);
             const { token } = await loginUser(data);
             localStorage.setItem("api-token", token);
-            router.push("/admin");
+            router.push("/admin/dashboard");
             setLoading(false);
         } catch (err: any) {
             const text = err.response.data.message as string;

@@ -2,15 +2,14 @@ import React from "react";
 
 const IconItems = (props: any) => {
   return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 18 18"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
-      <path d="M6.75 11.25V17.25H0.75V11.25H6.75ZM17.25 11.25V17.25H11.25V11.25H17.25ZM6.75 0.75V6.75H0.75V0.75H6.75ZM17.25 0.75V6.75H11.25V0.75H17.25Z" />
+    <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <g clipPath="url(#clip0_175_35)">
+        <path
+          d="M9 15.5V23.5H1V15.5H9ZM23 15.5V23.5H15V15.5H23ZM9 1.5V9.5H1V1.5H9ZM23 1.5V9.5H15V1.5H23Z"
+          stroke="black"
+          strokeWidth="2"
+        />
+      </g>
     </svg>
   );
 };
