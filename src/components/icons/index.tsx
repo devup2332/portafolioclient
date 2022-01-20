@@ -18,3 +18,5 @@ export { default as IconInbox } from "./iconInbox";
 export { default as IconExit } from "./iconExit";
 export { default as IconPdf } from "./iconPdf";
 export { default as IconLock } from "./iconLock";
+export { default as IconSave } from "./iconSave";
+export { default as IconCamera } from "./iconCamera";
