@@ -17,22 +17,22 @@ const SideNav = ({ sidenav, setSidenav }: SideNavProps) => {
     const options = [
         {
             label: "Home",
-            icon: <IconHome className="text-secondary fill-current" />,
+            icon: <IconHome className="text-secondary w-7 fill-current" />,
             action: () => {},
         },
         {
             label: "About Me",
-            icon: <IconPerson className="text-secondary fill-current" />,
+            icon: <IconPerson className="text-secondary w-7  stroke-current" />,
             action: () => {},
         },
         {
             label: "Projects",
-            icon: <IconItems className="text-secondary fill-current" />,
+            icon: <IconItems className="text-secondary w-7 stroke-current" />,
             action: () => {},
         },
         {
             label: "Contact",
-            icon: <IconContact className="text-secondary fill-current" />,
+            icon: <IconContact className="text-secondary w-7 fill-current" />,
             action: () => {},
         },
     ];

@@ -12,6 +12,11 @@ const withAuth = (Component: React.FunctionComponent) => {
                 router.replace("/login");
                 return;
             }
+            if (router.pathname === "/admin") {
+                setVerify(true);
+                router.replace("/admin/dashboard");
+                return;
+            }
             setVerify(true);
         }, []);
         if (verify) return <Component {...props} />;

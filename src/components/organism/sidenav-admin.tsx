@@ -1,5 +1,4 @@
 import { useRouter } from "next/dist/client/router";
-import Link from "next/link";
 import React from "react";
 import { IconDashboard, IconExit, IconHome, IconInbox, IconItems, IconPerson } from "../icons";
 
@@ -11,22 +10,22 @@ const options = [
     },
     {
         label: "Profile",
-        icon: <IconPerson className="text-black fill-current" />,
+        icon: <IconPerson className="text-black w-5 stroke-current" />,
         section: "profile",
     },
     {
         label: "Projects",
-        icon: <IconItems className="" />,
+        icon: <IconItems className="text black stroke-current w-5" />,
         section: "projects",
     },
     {
         label: "Inbox",
-        icon: <IconInbox className="text-black fill-current" />,
+        icon: <IconInbox className="text-black fill-current w-5" />,
         section: "inbox",
     },
     {
         label: "Homepage",
-        icon: <IconHome className="text-black fill-current " />,
+        icon: <IconHome className="text-black w-5 fill-current " />,
         section: "",
     },
     {
@@ -51,7 +50,7 @@ const SideNavAdmin = () => {
                         return (
                             <li
                                 key={index}
-                                className="cursor-pointer flex py-2 px-7 rounded-xl justify-between bg-white"
+                                className="cursor-pointer flex py-2 px-7 rounded-xl justify-between bg-white transition-all hover:bg-hover"
                                 onClick={() => {
                                     goToSection(opt.section);
                                 }}
@@ -64,7 +63,7 @@ const SideNavAdmin = () => {
                     return (
                         <li
                             key={index}
-                            className="cursor-pointer flex py-2 px-7 rounded-xl justify-between bg-white"
+                            className="cursor-pointer flex py-2 px-7 rounded-xl justify-between bg-white transition-all hover:bg-hover"
                             onClick={() => {
                                 goToSection(opt.section);
                             }}

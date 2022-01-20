@@ -5,6 +5,10 @@ import withAuth from "../../hocs/withAuth";
 import BaseAdmin from "../../layouts/baseAdmin";
 
 const AdminPage = () => {
-    return <BaseAdmin section={<DashboardContainer />} sidenav={<SideNavAdmin />} />;
+    return (
+        <BaseAdmin section="Admin - Dashboard" sidenav={<SideNavAdmin />}>
+            <DashboardContainer />
+        </BaseAdmin>
+    );
 };
 export default withAuth(AdminPage);
