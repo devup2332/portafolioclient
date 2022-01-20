@@ -39,9 +39,26 @@ const data: ChartData<"bar"> = {
     ],
 };
 const data2: ChartData<"pie"> = {
+    labels: ["1", "2"],
     datasets: [
         {
-            data: [12, 12, 12],
+            label: "Label 1",
+            data: [30, 12, 12],
+            backgroundColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 0.2)"],
+        },
+        {
+            label: "Label 1",
+            data: [300, 125, 38],
+            backgroundColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 0.2)"],
+        },
+        {
+            label: "Label 1",
+            data: [30, 12, 12],
+            backgroundColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 0.2)"],
+        },
+        {
+            label: "Label 1",
+            data: [30, 12, 12],
             backgroundColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)", "rgba(255, 206, 86, 0.2)"],
         },
     ],
