@@ -19,21 +19,24 @@ const LoginContainer = () => {
     const handleLogin = async (data: Credentials) => {
         try {
             setLoading(true);
-            const { token } = await loginUser(data);
+            const { token, message } = await loginUser(data);
+            if (!token) {
+                setLoading(false);
+                setMessage(message);
+                setOpenSnack(true);
+                return;
+            }
             localStorage.setItem("api-token", token);
             router.push("/admin/dashboard");
             setLoading(false);
         } catch (err: any) {
-            const text = err.response.data.message as string;
-            setMessage(text);
+            setMessage("Server is not responding");
             setOpenSnack(true);
             setLoading(false);
         }
     };
 
-    const handleErrorLogin = (err: any) => {
-        console.log(err);
-    };
+    const handleErrorLogin = (err: any) => {};
 
     return (
         <div className="w-full flex items-center justify-center h-screen bg-primary">
