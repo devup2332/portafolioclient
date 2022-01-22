@@ -20,3 +20,6 @@ export { default as IconPdf } from "./iconPdf";
 export { default as IconLock } from "./iconLock";
 export { default as IconSave } from "./iconSave";
 export { default as IconCamera } from "./iconCamera";
+export { default as IconAdd } from "./iconAdd";
+export { default as IconEdit } from "./iconEdit";
+export { default as IconTrash } from "./iconTrash";
