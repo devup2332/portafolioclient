@@ -31,9 +31,9 @@ const Snackbar = ({ message, open, setOpen, hideDuration }: SnackbarProps) => {
     }, [open]);
     return (
         <div
-            className="transition-all fixed bottom-0 transform bg-white rounded-lg py-3 w-4/5 px-5 flex justify-between align-items-center max-w-300 "
+            className="transition-all fixed bottom-0 left-0 right-0 ml-auto mr-auto bg-white rounded-lg py-3 w-4/5 px-5 flex justify-between align-items-center max-w-300 shadow-xl"
             style={{
-                transform: open ? "translateY(-3rem)" : "translateY(5rem)",
+                transform: open ? "translateY(-50px)" : "translateY(100px)",
             }}
         >
             {message}
