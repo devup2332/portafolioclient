@@ -23,14 +23,14 @@ const ProjectsHome = () => {
             >
               <img
                 src={
-                  project.images.filter((img) => img.type_image === "cover")[0]
+                  project.images.filter((img:any) => img.type_image === "cover")[0]
                     .secure_url
                 }
                 alt=""
                 className="block max-h-36  w-full object-cover rounded-md max-h-225"
               />
               <div className="flex gap-1">
-                {project.stacks.map((stack, index) => {
+                {project.stacks.map((stack:any, index:number) => {
                   return (
                     <span
                       key={index}
