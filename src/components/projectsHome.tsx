@@ -1,6 +1,6 @@
 import React from "react";
 import { data } from "../data";
-import { IconGithub, IconInfo, IconWeb } from "./icons";
+import { IconGithub, IconWeb } from "./icons";
 
 const ProjectsHome = () => {
     return (
@@ -33,9 +33,6 @@ const ProjectsHome = () => {
                             <div className="flex justify-between items-center ">
                                 <h1 className="text-base lg:text-3xl">{project.name}</h1>
                                 <div className="flex gap-2">
-                                    <button className="group bg-button-2 py-2.5 px-4 rounded-lg transition-all hover:bg-primary ">
-                                        <IconInfo className="transition-all stroke-current group-hover:text-white " />
-                                    </button>
                                     <button className="group bg-button-2 py-2.5 px-4 rounded-lg transition-all hover:bg-primary ">
                                         <IconWeb className="fill-current transition-all text-black group-hover:text-white" />
                                     </button>

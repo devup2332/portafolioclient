@@ -4,8 +4,10 @@ import { useForm } from "react-hook-form";
 import { IconLoading } from "../components/icons";
 import Snackbar from "../components/molecules/snackbar";
 import { Credentials, loginUser } from "../lib/api/auth/loginUser";
+import { useGlobal } from "../providers/GlobalProviders";
 
 const LoginContainer = () => {
+    const { user, token, setToken } = useGlobal();
     const [message, setMessage] = useState("");
     const [open, setOpenSnack] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -27,6 +29,7 @@ const LoginContainer = () => {
                 return;
             }
             localStorage.setItem("api-token", token);
+            setToken(token);
             router.push("/admin/dashboard");
             setLoading(false);
         } catch (err: any) {
