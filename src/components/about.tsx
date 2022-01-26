@@ -4,10 +4,9 @@ import AboutVector from "./vectors/aboutVector";
 const About = () => {
     const testMessenger = () => {
         window.open(
-            "fb-messenger://share?link=" +
-                encodeURIComponent("https://google.com") +
-                "&app_id=" +
-                encodeURIComponent(4091118000987389)
+            `fb-messenger://share?link=${encodeURIComponent("https://google.com")}&app_id=${encodeURIComponent(
+                "4091118000987389"
+            )}`
         );
     };
     return (
