@@ -18,11 +18,17 @@ const ProfileContainer = () => {
         handleSubmit,
     } = useForm();
     const saveProfile = async (profile: any) => {
-        setLoading(true);
-        const res = await updateUserProfile(profile);
-        setMessage(res.message);
-        setOpen(true);
-        setLoading(false);
+        try {
+            setLoading(true);
+            const res = await updateUserProfile(profile);
+            setMessage(res.message);
+            setOpen(true);
+            setLoading(false);
+        } catch (err) {
+            setMessage("Server is not responding, please try later");
+            setOpen(true);
+            setLoading(false);
+        }
     };
 
     const loadImageProfile = () => {
