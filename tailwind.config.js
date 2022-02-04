@@ -13,6 +13,7 @@ module.exports = {
             "black-transparent": "rgba(0,0,0,0.3)",
             card: "#F6F6F6",
             white: "#ffffff",
+            success: "#06a800",
             black: "#000000",
             hover: "#E7E7E7",
             danger: "#e31717",
@@ -20,6 +21,7 @@ module.exports = {
         boxShadow: {
             sm: "0px 5px 5px 0px rgba(0,0,0,0.3)",
             xl: "0px 5px 5px 0px rgba(0,0,0,0.5)",
+            "2xl": "0px 5px 5px 0px rgba(0,0,0,0.7)"
         },
         fontSize: {
             xs: "13px",
@@ -54,6 +56,9 @@ module.exports = {
         minHeight: {
             300: "300px",
             400: "400px",
+        },
+        zIndex: {
+            "-10": "-10"
         },
         extend: {},
     },

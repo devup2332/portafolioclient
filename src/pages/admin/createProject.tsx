@@ -5,7 +5,7 @@ import BaseAdmin from "../../layouts/baseAdmin";
 
 const CreateProjectPage = () => {
     return (
-        <BaseAdmin section="New Project" sidenav={<SideNavAdmin />}>
+        <BaseAdmin section="Admin - New Project" sidenav={<SideNavAdmin />}>
             <CreateNewProjectContainer />
         </BaseAdmin>
     );
