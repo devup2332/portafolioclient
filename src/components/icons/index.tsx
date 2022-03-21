@@ -24,3 +24,4 @@ export { default as IconAdd } from "./iconAdd";
 export { default as IconEdit } from "./iconEdit";
 export { default as IconTrash } from "./iconTrash";
 export { default as IconBack } from "./iconBack";
+export { default as IconCheck } from "./iconCheck";
