@@ -66,7 +66,7 @@ const data2: ChartData<"pie"> = {
 const DashboardContainer = () => {
     useEffect(() => {}, []);
     return (
-        <div className="py-10 w-full px-20 2xl:px-36 max-w-1500">
+        <div className="py-10 m-auto w-full px-20 2xl:px-36 max-w-1500">
             <h1 className="font-roboto text-5xl font-bold">DASHBOARD</h1>
             <div className="mt-16 flex justify-between">
                 <div className="bg-primary text-white py-5 px-14 cursor-pointer transition-all hover:shadow-sm hover:text-primary hover:bg-white rounded-2xl font-robotoMono font-bold text-base grid grid-cols-2">
