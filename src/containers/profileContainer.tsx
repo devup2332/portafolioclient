@@ -55,7 +55,7 @@ const ProfileContainer = () => {
         getProfile();
     }, []);
     return (
-        <div className="py-10 w-full px-20 2xl:px-36 max-w-1500 font-roboto">
+        <div className="py-10 m-auto w-full px-20 2xl:px-36 max-w-1500 font-roboto">
             <div className="flex justify-between w-full">
                 <h1 className="text-5xl font-bold font-roboto">PROFILE</h1>
                 <button
