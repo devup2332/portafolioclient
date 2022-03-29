@@ -3,6 +3,7 @@ import { useFieldArray, useForm } from "react-hook-form";
 import { IconAdd, IconBack, IconSave } from "../components/icons";
 import DropZone from "../components/molecules/dropZone";
 import SelectStack from "../components/molecules/selectStack";
+import { createProjectRest } from "../lib/api/projects/createProject";
 const CreateNewProjectContainer = () => {
   const {
     handleSubmit,
@@ -17,10 +18,11 @@ const CreateNewProjectContainer = () => {
     control,
     name: "images",
   });
-  const createProject = (data: any) => {
+  const createProject = async (data: any) => {
+    const res = await createProjectRest(data);
+    console.log(res);
     reset();
-    reset({images: [],stack: ''});
-    console.log("data", data, fields);
+    reset({ images: [], stack: "" });
   };
 
   const handleError = (err: any) => {
