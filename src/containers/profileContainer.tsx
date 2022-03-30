@@ -1,54 +1,34 @@
-import React, { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IconCamera, IconLoading, IconLock, IconSave } from "../components/icons";
 import Snackbar from "../components/molecules/snackbar";
-
-const inputFields = [
-    {
-        placeholder: "Full Name",
-        type: "text",
-        name: "fullname",
-    },
-    {
-        placeholder: "Email",
-        type: "text",
-        name: "email",
-    },
-    {
-        placeholder: "Phone",
-        type: "text",
-        name: "phone",
-    },
-    {
-        placeholder: "Linkedin",
-        type: "text",
-        name: "linkedin",
-    },
-    {
-        placeholder: "Github",
-        type: "text",
-        name: "github",
-    },
-    {
-        placeholder: "About me",
-        type: "textarea",
-        name: "about",
-    },
-];
+import { getSuperAdminProfile } from "../lib/api/profile/getSuperAdminProfile";
+import { updateUserProfile } from "../lib/api/profile/updateUserProfile";
+import { User } from "../providers/GlobalProviders";
 
 const ProfileContainer = () => {
     const inputFileRef = useRef<HTMLInputElement>(null);
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState("Alerta csm");
     const {
         register,
         formState: { errors },
+        reset,
         handleSubmit,
     } = useForm();
-    const saveProfile = (profile: any) => {
-        console.log(profile);
-        setLoading(true);
+    const saveProfile = async (profile: any) => {
+        try {
+            setLoading(true);
+            const res = await updateUserProfile(profile);
+            setMessage(res.message);
+            setOpen(true);
+            setLoading(false);
+        } catch (err) {
+            setMessage("Server is not responding, please try later");
+            setOpen(true);
+            setLoading(false);
+        }
     };
 
     const loadImageProfile = () => {
@@ -57,8 +37,25 @@ const ProfileContainer = () => {
     const saveImageProfile = () => {
         console.log(inputFileRef.current?.files);
     };
+    const getProfile = async () => {
+        const response: {
+            profile: User;
+        } = await getSuperAdminProfile();
+        reset({
+            email: response.profile.email,
+            fullname: response.profile.fullname,
+            phone: response.profile.phone,
+            username: response.profile.username,
+            linkedin: response.profile.links.linkedin,
+            github: response.profile.links.github,
+            about_me: response.profile.about_me,
+        });
+    };
+    useEffect(() => {
+        getProfile();
+    }, []);
     return (
-        <div className="py-10 w-full px-20 2xl:px-36 max-w-1500 font-roboto">
+        <div className="py-10 m-auto w-full px-20 2xl:px-36 max-w-1500 font-roboto">
             <div className="flex justify-between w-full">
                 <h1 className="text-5xl font-bold font-roboto">PROFILE</h1>
                 <button
@@ -87,52 +84,129 @@ const ProfileContainer = () => {
                 </div>
 
                 <form className="w-7/12 grid grid-cols-2 gap-y-5 gap-x-10 " onSubmit={handleSubmit(saveProfile)}>
-                    {inputFields.map((field, index) => {
-                        if (field.type === "textarea")
-                            return (
-                                <div key={index} className="col-start-1 col-end-3">
-                                    <textarea
-                                        className="border-2  h-56 resize-none block h-11 font-roboto w-full border-black rounded-md py-2 placeholder-black px-5 outline-none"
-                                        placeholder={field.placeholder}
-                                        {...register(field.name, {
-                                            required: {
-                                                message: `${field.placeholder} is required`,
-                                                value: true,
-                                            },
-                                        })}
-                                    ></textarea>
-                                    {errors && (
-                                        <>
-                                            <p className="mt-1 text-xs text-danger font-bold">
-                                                {errors[field.name]?.message}
-                                            </p>
-                                        </>
-                                    )}
-                                </div>
-                            );
-                        return (
-                            <div key={index}>
-                                <input
-                                    className="border-2 block h-11 font-roboto w-full border-black rounded-md py-2 placeholder-black px-5 outline-none"
-                                    type={field.type}
-                                    placeholder={field.placeholder}
-                                    {...register(field.name, {
-                                        required: {
-                                            message: `${field.placeholder} is required`,
-                                            value: true,
-                                        },
-                                    })}
-                                />
-                                {errors && (
-                                    <>
-                                        <p className="mt-1 text-xs text-danger font-bold">
-                                            {errors[field.name]?.message}
-                                        </p>
-                                    </>
-                                )}
-                            </div>
-                        );
-                    })}
+                    <div>
+                        <input
+                            className="border-2 block h-11 font-roboto w-full border-black rounded-md py-2 placeholder-black px-5 outline-none"
+                            type="text"
+                            placeholder="Full Name"
+                            {...register("fullname", {
+                                required: {
+                                    message: `Full Name is required`,
+                                    value: true,
+                                },
+                            })}
+                        />
+                        {errors.fullname && (
+                            <>
+                                <p className="mt-1 text-xs text-danger font-bold">{errors.fullname?.message}</p>
+                            </>
+                        )}
+                    </div>
+                    <div>
+                        <input
+                            className="border-2 block h-11 font-roboto w-full border-black rounded-md py-2 placeholder-black px-5 outline-none"
+                            type="text"
+                            placeholder="Email"
+                            {...register("email", {
+                                required: {
+                                    message: `Email is required`,
+                                    value: true,
+                                },
+                            })}
+                        />
+                        {errors && (
+                            <>
+                                <p className="mt-1 text-xs text-danger font-bold">{errors.email?.message}</p>
+                            </>
+                        )}
+                    </div>
+                    <div>
+                        <input
+                            className="border-2 block h-11 font-roboto w-full border-black rounded-md py-2 placeholder-black px-5 outline-none"
+                            type="text"
+                            placeholder="Phone"
+                            {...register("phone", {
+                                required: {
+                                    message: `Phone is required`,
+                                    value: true,
+                                },
+                            })}
+                        />
+                        {errors && (
+                            <>
+                                <p className="mt-1 text-xs text-danger font-bold">{errors.phone?.message}</p>
+                            </>
+                        )}
+                    </div>
+                    <div>
+                        <input
+                            className="border-2 block h-11 font-roboto w-full border-black rounded-md py-2 placeholder-black px-5 outline-none"
+                            placeholder="Username"
+                            {...register("username", {
+                                required: {
+                                    message: `Username is required`,
+                                    value: true,
+                                },
+                            })}
+                        />
+                        {errors && (
+                            <>
+                                <p className="mt-1 text-xs text-danger font-bold">{errors.username?.message}</p>
+                            </>
+                        )}
+                    </div>
+                    <div>
+                        <input
+                            className="border-2 block h-11 font-roboto w-full border-black rounded-md py-2 placeholder-black px-5 outline-none"
+                            placeholder="Linkedin"
+                            {...register("linkedin", {
+                                required: {
+                                    message: `Linkedin is required`,
+                                    value: true,
+                                },
+                            })}
+                        />
+                        {errors && (
+                            <>
+                                <p className="mt-1 text-xs text-danger font-bold">{errors.linkedin?.message}</p>
+                            </>
+                        )}
+                    </div>
+                    <div>
+                        <input
+                            className="border-2 block h-11 font-roboto w-full border-black rounded-md py-2 placeholder-black px-5 outline-none"
+                            placeholder="Github"
+                            {...register("github", {
+                                required: {
+                                    message: `Github is required`,
+                                    value: true,
+                                },
+                            })}
+                        />
+                        {errors && (
+                            <>
+                                <p className="mt-1 text-xs text-danger font-bold">{errors.github?.message}</p>
+                            </>
+                        )}
+                    </div>
+                    <div className="col-start-1 col-end-3">
+                        <textarea
+                            className="border-2 block h-48 font-roboto w-full border-black rounded-md py-2 placeholder-black px-5 outline-none"
+                            placeholder="About me"
+                            {...register("about_me", {
+                                required: {
+                                    message: `About me is required`,
+                                    value: true,
+                                },
+                            })}
+                        />
+                        {errors && (
+                            <>
+                                <p className="mt-1 text-xs text-danger font-bold">{errors.about_me?.message}</p>
+                            </>
+                        )}
+                    </div>
+
                     <button
                         type="submit"
                         className="col-start-1 gap-3 col-end-3 flex justify-center items-center h-11 text-white submit w-full block bg-primary rounded-md outline-none shadow-sm hover:bg-white transition-all hover:text-primary"

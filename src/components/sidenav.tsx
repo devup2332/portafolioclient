@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
-import {verifyMobile} from "../lib/utils/devicesMobile";
+import { useRouter } from "next/dist/client/router";
+import React, { useEffect, useRef } from "react";
+import { verifyMobile } from "../lib/utils/devicesMobile";
 import { whatsappLink } from "../lib/utils/whatsappLink";
 import { whatsappMessage } from "../lib/utils/whatsappMessage";
 import { useGlobal } from "../providers/GlobalProviders";
@@ -11,8 +12,9 @@ export interface SideNavProps {
 }
 
 const SideNav = ({ sidenav, setSidenav }: SideNavProps) => {
-    const { user } = useGlobal();
+    const { user, token, setToken } = useGlobal();
     const refSideNav = useRef<HTMLDivElement>(null);
+    const router = useRouter();
 
     const options = [
         {
@@ -35,6 +37,13 @@ const SideNav = ({ sidenav, setSidenav }: SideNavProps) => {
             icon: <IconContact className="text-secondary w-7 fill-current" />,
             action: () => {},
         },
+        {
+            label: "Admin",
+            icon: <IconContact className="text-secondary w-7 fill-current" />,
+            action: () => {
+                router.push("admin");
+            },
+        },
     ];
     const handleToggleSideNav = (e: any) => {
         if (!refSideNav.current?.contains(e.target)) {
@@ -48,6 +57,10 @@ const SideNav = ({ sidenav, setSidenav }: SideNavProps) => {
         const url = whatsappLink(message, user?.phone, isMobile);
         window.open(url);
     };
+    useEffect(() => {
+        const token = localStorage.getItem("api-token");
+        if (token) setToken(token);
+    }, []);
     return (
         <div
             className="fixed top-0 left-0 w-full transition-all z-10 h-full bg-black-transparent"
@@ -69,8 +82,16 @@ const SideNav = ({ sidenav, setSidenav }: SideNavProps) => {
 
                 <ul className="grid gap-5 mt-5">
                     {options.map((item, index) => {
+                        if (item.label === "Admin" && token) {
+                            return (
+                                <li className="flex gap-3 items-center sidenav-item " onClick={item.action} key={index}>
+                                    {item.icon}
+                                    <span>{item.label}</span>
+                                </li>
+                            );
+                        }
                         return (
-                            <li className="flex gap-3 items-center sidenav-item " key={index}>
+                            <li className="flex gap-3 items-center sidenav-item " onClick={item.action} key={index}>
                                 {item.icon}
                                 <span>{item.label}</span>
                             </li>

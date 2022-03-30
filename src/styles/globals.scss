@@ -44,6 +44,20 @@
     }
 }
 
+.scroll-custom {
+    scrollbar-width: thin;
+    scrollbar-color: #031927 #ffffff;
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 10px;
+      background: #031927;
+    }
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+}
+
 @media (min-width: 1024px) {
     .projects-classes {
         &::before {

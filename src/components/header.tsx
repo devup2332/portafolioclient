@@ -1,4 +1,5 @@
-import React from "react";
+import { useRouter } from "next/dist/client/router";
+import React, { useEffect } from "react";
 import { verifyMobile } from "../lib/utils/devicesMobile";
 import { whatsappLink } from "../lib/utils/whatsappLink";
 import { whatsappMessage } from "../lib/utils/whatsappMessage";
@@ -10,7 +11,8 @@ export interface HeaderProps {
     sidenav: boolean;
 }
 const Header = ({ setSidenav, sidenav }: HeaderProps) => {
-    const { user } = useGlobal();
+    const { user, token, setToken } = useGlobal();
+    const router = useRouter();
     const toggleSideNav = () => {
         setSidenav(!sidenav);
     };
@@ -20,6 +22,14 @@ const Header = ({ setSidenav, sidenav }: HeaderProps) => {
         const url = whatsappLink(message, user?.phone, isMobile);
         window.open(url);
     };
+    const goToAdmin = () => {
+        router.push("admin");
+    };
+
+    useEffect(() => {
+        const token = localStorage.getItem("api-token");
+        if (token) setToken(token);
+    }, []);
 
     return (
         <div className="bg-primary shadow-sm fixed top-0 left-0 w-full h-16 flex z-10 items-center lg:h-24">
@@ -30,6 +40,7 @@ const Header = ({ setSidenav, sidenav }: HeaderProps) => {
                     <li>About</li>
                     <li>Projects</li>
                     <li>Contact</li>
+                    {token && <li onClick={goToAdmin}>Admin</li>}
                 </ul>
                 <div className="hidden lg:block lg:flex lg:gap-5 lg:items-center ">
                     <a onClick={handleWhastapp} className="cursor-pointer" rel="noreferrer">
