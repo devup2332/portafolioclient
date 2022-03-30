@@ -1,9 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import {
-  FieldValues,
-  UseFormRegister,
-  UseFormSetValue,
-} from "react-hook-form";
+import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { Option, stackOptions } from "../../lib/utils/stackOptions";
 import { IconArrowDown, IconCheck } from "../icons";
 
@@ -13,18 +9,23 @@ interface SelectStackProps {
     [x: string]: any;
   };
   setValue: UseFormSetValue<FieldValues>;
+  initial: boolean;
+  setInitial: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SelectStack = ({
   register,
   errors,
   setValue,
+  initial = true,
+  setInitial,
 }: SelectStackProps) => {
   const [selectOptions, setSelectOptions] = useState<Option[]>(stackOptions);
   const optionsRef = useRef<HTMLDivElement>(null);
   const selectRef = useRef<HTMLDivElement>(null);
   const [openSelect, setOpenSelect] = useState(false);
   const addOption = (opt: Option) => {
+    setInitial(false);
     const arr = [...selectOptions];
     const ind = arr.findIndex((o) => o.label === opt.label);
     arr[ind].selected = !opt.selected;
@@ -56,21 +57,22 @@ const SelectStack = ({
         ref={selectRef}
         onClick={() => setOpenSelect(true)}
       >
-        {selectOptions.filter((o) => o.selected).length === 0 && (
+        {initial || selectOptions.filter((o) => o.selected).length === 0 ? (
           <p>Please choose a stack</p>
+        ) : (
+          <div className="flex gap-3 flex-wrap">
+            {selectOptions
+              .filter((o) => o.selected)
+              .map((o, ind) => (
+                <span
+                  key={ind}
+                  className="text-xs bg-primary rounded-lg px-3 py-1 text-white"
+                >
+                  {o.label}
+                </span>
+              ))}
+          </div>
         )}
-        <div className="flex gap-3 flex-wrap">
-          {selectOptions
-            .filter((o) => o.selected)
-            .map((o, ind) => (
-              <span
-                key={ind}
-                className="text-xs bg-primary rounded-lg px-3 py-1 text-white"
-              >
-                {o.label}
-              </span>
-            ))}
-        </div>
         <input
           type="hidden"
           autoComplete="off"

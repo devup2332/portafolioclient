@@ -11,6 +11,8 @@ interface DropzoneProps {
   };
   index?: number;
   setValue: UseFormSetValue<FieldValues>;
+  initial: boolean;
+  setInitial:React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const DropZone = ({
@@ -20,6 +22,8 @@ const DropZone = ({
   remove,
   name,
   setValue,
+  initial,
+  setInitial
 }: DropzoneProps) => {
   const dropzoneRef = useRef<HTMLDivElement>(null);
   const [hover, setHover] = useState(false);
@@ -31,9 +35,9 @@ const DropZone = ({
   };
 
   const readImage = (e: DragEvent) => {
+    setInitial(false)
     const file = e.dataTransfer?.files[0];
     const input = dropzoneRef.current?.children[0] as HTMLInputElement;
-    console.log(input);
     if (!file) return;
     const reader = new FileReader();
     const dt = new DataTransfer();
@@ -46,6 +50,7 @@ const DropZone = ({
     reader.readAsDataURL(file);
   };
   const handleImage = (e: React.FormEvent<HTMLInputElement>) => {
+    setInitial(false)
     const input = dropzoneRef.current?.children[0] as HTMLInputElement;
     const file = input.files?.[0];
     if (!file) return;
@@ -113,7 +118,7 @@ const DropZone = ({
             },
           })}
         />
-        {url ? (
+        {!initial && url ? (
           <img
             src={url}
             alt=""

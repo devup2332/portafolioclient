@@ -13,16 +13,19 @@ const CreateNewProjectContainer = () => {
     setValue,
     reset,
   } = useForm();
+  const [initialSelect, setInitialSelect] = useState(true);
+  const [url, setUrl] = useState("");
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: "images",
   });
   const createProject = async (data: any) => {
+    setInitialSelect(true);
+    setUrl("");
     const res = await createProjectRest(data);
     console.log(res);
-    reset();
-    reset({ images: [], stack: "" });
+    reset({ images: [], stack: "", cover: "", description: "", name: "" });
   };
 
   const handleError = (err: any) => {
@@ -51,6 +54,8 @@ const CreateNewProjectContainer = () => {
               register={register}
               errors={errors}
               setValue={setValue}
+              initial={initialSelect}
+              setInitial={setInitialSelect}
             />
 
             <button
@@ -70,6 +75,8 @@ const CreateNewProjectContainer = () => {
               index={ind + 1}
               errors={errors}
               setValue={setValue}
+              initial={initialSelect}
+              setInitial={setInitialSelect}
             />
           ))}
         </div>
@@ -100,6 +107,8 @@ const CreateNewProjectContainer = () => {
             register={register}
             errors={errors}
             setValue={setValue}
+            initial={initialSelect}
+            setInitial={setInitialSelect}
           />
 
           <div className="grid gap-2">
