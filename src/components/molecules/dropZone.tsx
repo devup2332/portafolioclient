@@ -12,7 +12,7 @@ interface DropzoneProps {
   index?: number;
   setValue: UseFormSetValue<FieldValues>;
   initial: boolean;
-  setInitial:React.Dispatch<React.SetStateAction<boolean>>
+  setInitial: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const DropZone = ({
@@ -23,7 +23,7 @@ const DropZone = ({
   name,
   setValue,
   initial,
-  setInitial
+  setInitial,
 }: DropzoneProps) => {
   const dropzoneRef = useRef<HTMLDivElement>(null);
   const [hover, setHover] = useState(false);
@@ -35,22 +35,22 @@ const DropZone = ({
   };
 
   const readImage = (e: DragEvent) => {
-    setInitial(false)
+    setInitial(false);
     const file = e.dataTransfer?.files[0];
     const input = dropzoneRef.current?.children[0] as HTMLInputElement;
     if (!file) return;
     const reader = new FileReader();
     const dt = new DataTransfer();
     dt.items.add(file);
+    setValue(index ? `images.${index - 1}.image` : "cover", dt.files);
     input.files = dt.files;
-    setValue(!index ? "cover" : `images.${index - 1}.name`, input.files);
     reader.onload = () => {
       setUrl(reader.result as string);
     };
     reader.readAsDataURL(file);
   };
   const handleImage = (e: React.FormEvent<HTMLInputElement>) => {
-    setInitial(false)
+    setInitial(false);
     const input = dropzoneRef.current?.children[0] as HTMLInputElement;
     const file = input.files?.[0];
     if (!file) return;
@@ -148,7 +148,7 @@ const DropZone = ({
       ) : null}
       {index && errors?.images?.[index - 1] ? (
         <p className="font-bold text-danger">
-          {errors?.images[index - 1].name?.message}
+          {errors?.images[index - 1]?.image.message}
         </p>
       ) : null}
     </>
