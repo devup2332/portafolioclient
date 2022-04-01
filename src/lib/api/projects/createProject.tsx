@@ -1,10 +1,10 @@
-import axios from "axios";
+import { AxiosResponse } from "axios";
 import instance from "../instance";
 
 interface Data {
   cover: FileList;
   description: string;
-  images: File[];
+  images: { image: FileList }[];
   name: string;
   stack: [
     {
@@ -16,16 +16,24 @@ interface Data {
 
 export const createProjectRest = async (data: Data) => {
   const fd = new FormData();
-  fd.append("cover", data.cover[0]);
-  fd.append("description", data.description);
-  fd.append("name", data.name);
-  data.stack.forEach((stack, ind) => {
-    fd.append(`stack_${ind}`, stack.label);
-  });
-  data.images.forEach((img, ind) => {
-    fd.append(`image_${ind}`, img);
+  const requests: Promise<AxiosResponse<any, any>>[] = [];
+  fd.append("image", data.cover[0]);
+  data.images.forEach((img) => {
+    requests.push(instance.post("/api/projects/upload-image", fd));
+    const formData = new FormData();
+    formData.append("image", img.image[0]);
+    requests.push(instance.post("/api/projects/upload-image", formData));
   });
 
-  const res = await instance.post("/api/projects", fd);
-  return res.data;
+  const responses = await Promise.all(requests);
+
+  // fd.append("description", data.description);
+  // fd.append("name", data.name);
+  // data.stack.forEach((stack, ind) => {
+  //   fd.append(`stack_${ind}`, stack.label);
+  // });
+  // data.images?.forEach((img, ind) => {
+  //   fd.append(`image_${ind}`, img.image[ind]);
+  // });
+  return responses;
 };

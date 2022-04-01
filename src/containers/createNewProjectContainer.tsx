@@ -14,15 +14,14 @@ const CreateNewProjectContainer = () => {
     reset,
   } = useForm();
   const [initialSelect, setInitialSelect] = useState(true);
-  const [url, setUrl] = useState("");
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: "images",
   });
   const createProject = async (data: any) => {
+    console.log(data.images, data);
     setInitialSelect(true);
-    setUrl("");
     const res = await createProjectRest(data);
     console.log(res);
     reset({ images: [], stack: "", cover: "", description: "", name: "" });
@@ -33,7 +32,7 @@ const CreateNewProjectContainer = () => {
   };
 
   const addImageInput = () => {
-    append({ name: "" });
+    append({});
   };
 
   useEffect(() => {}, []);
@@ -70,7 +69,7 @@ const CreateNewProjectContainer = () => {
             <DropZone
               register={register}
               key={input?.id}
-              name={`images.${ind}.name`}
+              name={`images.${ind}.image`}
               remove={remove}
               index={ind + 1}
               errors={errors}
