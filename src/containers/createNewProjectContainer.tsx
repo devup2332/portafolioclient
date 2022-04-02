@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import { IconAdd, IconBack, IconSave } from "../components/icons";
+import { IconAdd, IconBack, IconLoading, IconSave } from "../components/icons";
 import DropZone from "../components/molecules/dropZone";
 import SelectStack from "../components/molecules/selectStack";
+import Snackbar from "../components/molecules/snackbar";
 import { createProjectRest } from "../lib/api/projects/createProject";
+import {
+  Option,
+  stackOptions as initialStackOptions,
+} from "../lib/utils/stackOptions";
+import { useGlobal } from "../providers/GlobalProviders";
 const CreateNewProjectContainer = () => {
   const {
     handleSubmit,
@@ -14,17 +20,44 @@ const CreateNewProjectContainer = () => {
     reset,
   } = useForm();
   const [initialSelect, setInitialSelect] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [selectOptions, setSelectOptions] =
+    useState<Option[]>(initialStackOptions);
+  const [snackMessage, setSnackMessage] = useState("");
+  const [openSnack, setOpenSnack] = useState(false);
+  const { user } = useGlobal();
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: "images",
   });
   const createProject = async (data: any) => {
-    console.log(data.images, data);
-    setInitialSelect(true);
-    const res = await createProjectRest(data);
-    console.log(res);
-    reset({ images: [], stack: "", cover: "", description: "", name: "" });
+    try {
+      setLoading(true);
+      await createProjectRest(data, user?.id);
+
+      setSelectOptions(
+        selectOptions.map((opt) => {
+          return { ...opt, selected: false };
+        })
+      );
+      setLoading(false);
+      setInitialSelect(true);
+      setOpenSnack(true);
+      setSnackMessage("Project created successfully");
+      reset({ images: [], stack: "", cover: "", description: "", name: "" });
+    } catch (err) {
+      setSelectOptions(
+        selectOptions.map((opt) => {
+          return { ...opt, selected: false };
+        })
+      );
+      setLoading(false);
+      setInitialSelect(true);
+      setOpenSnack(true);
+      setSnackMessage("Server is not responding");
+      reset({ images: [], stack: "", cover: "", description: "", name: "" });
+    }
   };
 
   const handleError = (err: any) => {
@@ -106,8 +139,8 @@ const CreateNewProjectContainer = () => {
             register={register}
             errors={errors}
             setValue={setValue}
-            initial={initialSelect}
-            setInitial={setInitialSelect}
+            setSelectOptions={setSelectOptions}
+            selectOptions={selectOptions}
           />
 
           <div className="grid gap-2">
@@ -131,12 +164,23 @@ const CreateNewProjectContainer = () => {
           <button
             type="submit"
             className="bg-primary h-12 text-white rounded-md shadow-sm flex justify-center items-center gap-3 hover:bg-white hover:text-primary transition-all"
+            disabled={loading}
           >
-            <IconSave className="fill-current w-7" />
+            {loading ? (
+              <IconLoading className="fill-current w-7 animation-loading" />
+            ) : (
+              <IconSave className="fill-current w-7" />
+            )}
             <span>Save</span>
           </button>
         </form>
       </div>
+      <Snackbar
+        message={snackMessage}
+        open={openSnack}
+        setOpen={setOpenSnack}
+        hideDuration={6000}
+      />
     </div>
   );
 };
