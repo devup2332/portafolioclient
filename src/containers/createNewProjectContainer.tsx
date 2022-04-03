@@ -34,6 +34,7 @@ const CreateNewProjectContainer = () => {
   const createProject = async (data: any) => {
     try {
       setLoading(true);
+      console.log("DATA", data);
       await createProjectRest(data, user?.id);
 
       setSelectOptions(
