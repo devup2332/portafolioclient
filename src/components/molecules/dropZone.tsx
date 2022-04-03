@@ -116,6 +116,14 @@ const DropZone = ({
               message:
                 name !== "cover" ? "Insert a image" : "Please choose a cover",
             },
+            validate: {
+              maxSize: (val) => {
+                if (val[0].size > 6000000) {
+                  return "Max size is 6M";
+                }
+                return true;
+              },
+            },
           })}
         />
         {!initial && url ? (
