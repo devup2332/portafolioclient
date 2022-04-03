@@ -34,6 +34,7 @@ const CreateNewProjectContainer = () => {
   const createProject = async (data: any) => {
     try {
       setLoading(true);
+      console.log("DATA", data);
       await createProjectRest(data, user?.id);
 
       setSelectOptions(
@@ -134,7 +135,41 @@ const CreateNewProjectContainer = () => {
               <p className="text-danger font-bold">{errors.name?.message}</p>
             )}
           </div>
+          <div className="grid gap-2">
+            <label>Github</label>
+            <input
+              className="w-full border-2 border-black outline-none rounded-md px-3 py-2 placeholder-black"
+              type="text"
+              placeholder="Github"
+              {...register("github", {
+                required: {
+                  message: "Github is required",
+                  value: true,
+                },
+              })}
+            />
+            {errors.github && (
+              <p className="text-danger font-bold">{errors.github?.message}</p>
+            )}
+          </div>
 
+          <div className="grid gap-2">
+            <label>Url</label>
+            <input
+              className="w-full border-2 border-black outline-none rounded-md px-3 py-2 placeholder-black"
+              type="text"
+              placeholder="Url"
+              {...register("url", {
+                required: {
+                  message: "Url is required",
+                  value: true,
+                },
+              })}
+            />
+            {errors.url && (
+              <p className="text-danger font-bold">{errors.url?.message}</p>
+            )}
+          </div>
           <SelectStack
             register={register}
             errors={errors}

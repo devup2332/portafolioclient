@@ -60,12 +60,12 @@ module.exports = {
       400: "400px",
       450: "450px",
     },
-    zIndex: {
-      "-10": "-10",
-    },
     extend: {
       maxHeight: {
         565: "565px",
+      },
+      zIndex: {
+        "-10": "-10",
       },
     },
   },
