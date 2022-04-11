@@ -1,12 +1,16 @@
+import axios from "axios";
 import React from "react";
+import instance from "../lib/api/instance";
 import { useAppSelector } from "../redux/store";
 import { IconGithub, IconWeb } from "./icons";
 
 const ProjectsHome = () => {
   const { mainProfile } = useAppSelector((state) => state.mainProfile);
-  console.log("here", mainProfile);
   return (
-    <div className="py-10 w-5/6 m-auto grid gap-5 lg:max-w-1180 projects-classes ">
+    <div
+      id="projects_home_section"
+      className="py-10 w-5/6 m-auto grid gap-5 lg:max-w-1180 projects-classes "
+    >
       <h1 className="text-5xl text-center lg:text-7xl lg:text-left xl:text-8xl">
         PROJECTS
       </h1>
@@ -54,13 +58,14 @@ const ProjectsHome = () => {
           );
         })}
       </div>
-
-      <button
-        type="button"
-        className="font-robotoMono justify-self-center rounded-lg bg-secondary shadow-sm w-48 px-5 py-3 text-white font-bold justify-self-center hover:shadow-xl transition-all lg:mt-14"
-      >
-        Load More
-      </button>
+      {(mainProfile?.projects as any[])?.length > 6 ? (
+        <button
+          type="button"
+          className="font-robotoMono justify-self-center rounded-lg bg-secondary shadow-sm w-48 px-5 py-3 text-white font-bold justify-self-center hover:shadow-xl transition-all lg:mt-14"
+        >
+          Load More
+        </button>
+      ) : null}
     </div>
   );
 };

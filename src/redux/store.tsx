@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { TypedUseSelectorHook, useSelector } from "react-redux";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import mainProfileReducer from "./mainProfile";
 import projectsReducer from "./projects";
 
