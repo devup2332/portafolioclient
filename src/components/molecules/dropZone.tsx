@@ -144,7 +144,6 @@ const DropZone = ({
           type="button"
           className="shadow-xl py-3 hover:bg-hover transition-all rounded-md"
           onClick={() => {
-            console.log(index - 1);
             remove(index - 1);
           }}
         >

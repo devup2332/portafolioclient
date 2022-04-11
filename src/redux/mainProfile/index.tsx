@@ -17,6 +17,7 @@ export interface MainProfile {
     created_at?: string;
   };
   phone?: number | string;
+  cv?: string;
 }
 const initialState: { mainProfile: MainProfile } = {
   mainProfile: {},
@@ -30,11 +31,16 @@ export const mainProfileSlice = createSlice({
       state = action.payload;
       return state;
     },
+    uploadCvAction: (state, action) => {
+      state = action.payload;
+      return state;
+    },
   },
 });
 
 export type MainProfileDispatch = typeof store.dispatch;
 
-export const { getMainProfileAction } = mainProfileSlice.actions;
+export const { getMainProfileAction, uploadCvAction } =
+  mainProfileSlice.actions;
 
 export default mainProfileSlice.reducer;
