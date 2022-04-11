@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { sendEmailRest } from "../lib/api/email/sendEmail";
-import { useGlobal } from "../providers/GlobalProviders";
 import { useAppSelector } from "../redux/store";
-import { IconEmail, IconMap, IconPhone } from "./icons";
+import { IconEmail, IconLoading, IconMap, IconPhone } from "./icons";
+import Snackbar from "./molecules/snackbar";
 
 const inputs = [
   {
@@ -35,18 +35,27 @@ const inputs = [
 
 const ContactHome = () => {
   const { mainProfile } = useAppSelector((state) => state.mainProfile);
+  const [message, setMessage] = useState("");
+  const [open, setOpen] = useState(false);
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
+  const [loading, setLoading] = useState(false);
+
   const sendEmail = async (email: any) => {
+    setLoading(true);
     const res = await sendEmailRest(email);
-    console.log(res);
+    setLoading(false);
+    setMessage("Message send successfully");
+    setOpen(true);
+    reset()
   };
   return (
-    <div className="grid lg:flex lg:gap-10">
+    <div id='contact_home_section' className="grid lg:flex lg:gap-10">
       <div className="bg-primary grid py-16 gap-5 max-w-1180 lg:py-24 lg:w-4/6 lg:rounded-tr-xl lg:rounded-br-xl lg:pl-20 lg:pr-10 xl:pr-32 xl:pl-48 2xl:pl-96">
         <h1 className="text-center text-white text-5xl lg:text-7xl lg:text-left xl:text-8xl">
           CONTACT
@@ -58,11 +67,30 @@ const ContactHome = () => {
           {inputs.map((input, index) => {
             if (input.type === "input") {
               return (
-                <input
-                  type="text"
-                  key={index}
+                <div key={index} className="grid gap-2">
+                  <label className="text-white">{input.placeholder}</label>
+                  <input
+                    type={input.name === "phone" ? "number" : "text"}
+                    autoComplete="off"
+                    placeholder={input.placeholder}
+                    className="font-robotoMono text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full xl:h-14"
+                    {...register(input.name, {
+                      required: {
+                        value: true,
+                        message: `${input.name} is required`,
+                      },
+                    })}
+                  />
+                </div>
+              );
+            }
+            return (
+              <div key={index} className="lg:col-span-2 grid gap-2">
+                <label className="text-white">{input.placeholder}</label>
+                <textarea
                   placeholder={input.placeholder}
-                  className="font-robotoMono text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full xl:h-14"
+                  className="font-robotoMono text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full h-40 "
+                  autoComplete="off"
                   {...register(input.name, {
                     required: {
                       value: true,
@@ -70,26 +98,18 @@ const ContactHome = () => {
                     },
                   })}
                 />
-              );
-            }
-            return (
-              <textarea
-                key={index}
-                placeholder={input.placeholder}
-                className="font-robotoMono text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full h-40 lg:col-span-2"
-                {...register(input.name, {
-                  required: {
-                    value: true,
-                    message: `${input.name} is required`,
-                  },
-                })}
-              />
+              </div>
             );
           })}
           <button
             type="submit"
-            className="w-full block bg-secondary text-white text-sm rounded-md py-2.5 shadow-sm transition-all hover:shadow-xl font-bold font-robotoMono lg:row-span-1 lg:col-span-2"
+            className="w-full block flex justify-center gap-3 bg-secondary text-white text-sm rounded-md py-2.5 shadow-sm transition-all hover:shadow-xl font-bold font-robotoMono lg:row-span-1 lg:col-span-2"
           >
+            {loading ? (
+              <IconLoading className="w-7 fill-current animation-loading" />
+            ) : (
+              <IconEmail className="w-7 fill-current" />
+            )}
             Send Message
           </button>
         </form>
@@ -113,6 +133,12 @@ const ContactHome = () => {
           <p className="ml-3">{mainProfile.email}</p>
         </div>
       </div>
+      <Snackbar
+        message={message}
+        hideDuration={6000}
+        open={open}
+        setOpen={setOpen}
+      />
     </div>
   );
 };
