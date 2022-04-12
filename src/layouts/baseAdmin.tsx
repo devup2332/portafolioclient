@@ -1,5 +1,8 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 import Head from "next/head";
+import { useDispatch } from "react-redux";
+import { getMainProfileAction } from "../redux/mainProfile";
+import { fetchMainProfile } from "../redux/mainProfile/actions/fetchMainProfile";
 
 export interface SidenavAdminProps {
   sidenav: ReactElement;
@@ -8,6 +11,10 @@ export interface SidenavAdminProps {
 }
 
 const BaseAdmin = ({ sidenav, section, children }: SidenavAdminProps) => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchMainProfile());
+  }, []);
   return (
     <>
       <Head>
@@ -19,7 +26,9 @@ const BaseAdmin = ({ sidenav, section, children }: SidenavAdminProps) => {
       </Head>
       <div className="flex h-screen">
         {sidenav && sidenav}
-        <div className="w-full overflow-y-auto">{children ? children : null}</div>
+        <div className="w-full overflow-y-auto">
+          {children ? children : null}
+        </div>
       </div>
     </>
   );

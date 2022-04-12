@@ -9,23 +9,21 @@ interface SelectStackProps {
     [x: string]: any;
   };
   setValue: UseFormSetValue<FieldValues>;
-  initial: boolean;
-  setInitial: React.Dispatch<React.SetStateAction<boolean>>;
+  selectOptions: Option[];
+  setSelectOptions: React.Dispatch<React.SetStateAction<Option[]>>;
 }
 
 const SelectStack = ({
   register,
   errors,
   setValue,
-  initial = true,
-  setInitial,
+  selectOptions,
+  setSelectOptions,
 }: SelectStackProps) => {
-  const [selectOptions, setSelectOptions] = useState<Option[]>(stackOptions);
   const optionsRef = useRef<HTMLDivElement>(null);
   const selectRef = useRef<HTMLDivElement>(null);
   const [openSelect, setOpenSelect] = useState(false);
   const addOption = (opt: Option) => {
-    setInitial(false);
     const arr = [...selectOptions];
     const ind = arr.findIndex((o) => o.label === opt.label);
     arr[ind].selected = !opt.selected;
@@ -57,7 +55,7 @@ const SelectStack = ({
         ref={selectRef}
         onClick={() => setOpenSelect(true)}
       >
-        {initial || selectOptions.filter((o) => o.selected).length === 0 ? (
+        {selectOptions.filter((o) => o.selected).length === 0 ? (
           <p>Please choose a stack</p>
         ) : (
           <div className="flex gap-3 flex-wrap">

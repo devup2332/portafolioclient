@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
-import { IconAdd, IconBack, IconSave } from "../components/icons";
+import { IconAdd, IconBack, IconLoading, IconSave } from "../components/icons";
 import DropZone from "../components/molecules/dropZone";
 import SelectStack from "../components/molecules/selectStack";
+import Snackbar from "../components/molecules/snackbar";
 import { createProjectRest } from "../lib/api/projects/createProject";
+import {
+  Option,
+  stackOptions as initialStackOptions,
+} from "../lib/utils/stackOptions";
+import { useGlobal } from "../providers/GlobalProviders";
 const CreateNewProjectContainer = () => {
   const {
     handleSubmit,
@@ -14,18 +20,44 @@ const CreateNewProjectContainer = () => {
     reset,
   } = useForm();
   const [initialSelect, setInitialSelect] = useState(true);
-  const [url, setUrl] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [selectOptions, setSelectOptions] =
+    useState<Option[]>(initialStackOptions);
+  const [snackMessage, setSnackMessage] = useState("");
+  const [openSnack, setOpenSnack] = useState(false);
+  const { user } = useGlobal();
 
   const { fields, append, remove } = useFieldArray({
     control,
     name: "images",
   });
   const createProject = async (data: any) => {
-    setInitialSelect(true);
-    setUrl("");
-    const res = await createProjectRest(data);
-    console.log(res);
-    reset({ images: [], stack: "", cover: "", description: "", name: "" });
+    try {
+      setLoading(true);
+      await createProjectRest(data, user?.id);
+
+      setSelectOptions(
+        selectOptions.map((opt) => {
+          return { ...opt, selected: false };
+        })
+      );
+      setLoading(false);
+      setInitialSelect(true);
+      setOpenSnack(true);
+      setSnackMessage("Project created successfully");
+      reset({ images: [], stack: "", cover: "", description: "", name: "" });
+    } catch (err) {
+      setSelectOptions(
+        selectOptions.map((opt) => {
+          return { ...opt, selected: false };
+        })
+      );
+      setLoading(false);
+      setInitialSelect(true);
+      setOpenSnack(true);
+      setSnackMessage("Server is not responding");
+      reset({ images: [], stack: "", cover: "", description: "", name: "" });
+    }
   };
 
   const handleError = (err: any) => {
@@ -33,7 +65,7 @@ const CreateNewProjectContainer = () => {
   };
 
   const addImageInput = () => {
-    append({ name: "" });
+    append({});
   };
 
   useEffect(() => {}, []);
@@ -70,7 +102,7 @@ const CreateNewProjectContainer = () => {
             <DropZone
               register={register}
               key={input?.id}
-              name={`images.${ind}.name`}
+              name={`images.${ind}.image`}
               remove={remove}
               index={ind + 1}
               errors={errors}
@@ -102,13 +134,47 @@ const CreateNewProjectContainer = () => {
               <p className="text-danger font-bold">{errors.name?.message}</p>
             )}
           </div>
+          <div className="grid gap-2">
+            <label>Github</label>
+            <input
+              className="w-full border-2 border-black outline-none rounded-md px-3 py-2 placeholder-black"
+              type="text"
+              placeholder="Github"
+              {...register("github", {
+                required: {
+                  message: "Github is required",
+                  value: true,
+                },
+              })}
+            />
+            {errors.github && (
+              <p className="text-danger font-bold">{errors.github?.message}</p>
+            )}
+          </div>
 
+          <div className="grid gap-2">
+            <label>Website</label>
+            <input
+              className="w-full border-2 border-black outline-none rounded-md px-3 py-2 placeholder-black"
+              type="text"
+              placeholder="Website"
+              {...register("website", {
+                required: {
+                  message: "Website is required",
+                  value: true,
+                },
+              })}
+            />
+            {errors.website && (
+              <p className="text-danger font-bold">{errors.website?.message}</p>
+            )}
+          </div>
           <SelectStack
             register={register}
             errors={errors}
             setValue={setValue}
-            initial={initialSelect}
-            setInitial={setInitialSelect}
+            setSelectOptions={setSelectOptions}
+            selectOptions={selectOptions}
           />
 
           <div className="grid gap-2">
@@ -132,12 +198,23 @@ const CreateNewProjectContainer = () => {
           <button
             type="submit"
             className="bg-primary h-12 text-white rounded-md shadow-sm flex justify-center items-center gap-3 hover:bg-white hover:text-primary transition-all"
+            disabled={loading}
           >
-            <IconSave className="fill-current w-7" />
+            {loading ? (
+              <IconLoading className="fill-current w-7 animation-loading" />
+            ) : (
+              <IconSave className="fill-current w-7" />
+            )}
             <span>Save</span>
           </button>
         </form>
       </div>
+      <Snackbar
+        message={snackMessage}
+        open={openSnack}
+        setOpen={setOpenSnack}
+        hideDuration={6000}
+      />
     </div>
   );
 };
