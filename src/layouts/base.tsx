@@ -11,9 +11,11 @@ export interface BaseProps {
 }
 const Base = ({ header, section, children }: BaseProps) => {
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(fetchMainProfile());
   }, []);
+
   return (
     <div>
       <Head>
