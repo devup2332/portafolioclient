@@ -11,17 +11,15 @@ export interface BaseProps {
 }
 const Base = ({ header, section, children }: BaseProps) => {
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(fetchMainProfile());
   }, []);
+
   return (
     <div>
       <Head>
         <title>Drojas - {section}</title>
-        <meta
-          httpEquiv="Content-Security-Policy"
-          content="upgrade-insecure-requests"
-        />
         <link
           href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap"
           rel="stylesheet"
