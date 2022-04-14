@@ -6,7 +6,6 @@ import Base from "../layouts/base";
 
 const Home: NextPage = () => {
   const [sidenav, setSidenav] = useState(false);
-
   return (
     <Base
       header={<Header setSidenav={setSidenav} sidenav={sidenav} />}
