@@ -45,7 +45,7 @@ const ProjectsHome = () => {
               <div className="flex justify-between items-center ">
                 <h1 className="text-base lg:text-3xl">{project.name}</h1>
                 <div className="flex gap-2">
-                  <a href={project.github} target="_blank">
+                  <a href={project.github} target="_blank" rel="noreferrer">
                     <button className="group bg-button-2 py-2.5 px-4 rounded-lg transition-all hover:bg-primary ">
                       <IconGithub className="fill-current text-black group-hover:text-white transition-all" />
                     </button>
