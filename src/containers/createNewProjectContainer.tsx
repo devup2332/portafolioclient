@@ -45,7 +45,16 @@ const CreateNewProjectContainer = () => {
       setInitialSelect(true);
       setOpenSnack(true);
       setSnackMessage("Project created successfully");
-      reset({ images: [], stack: "", cover: "", description: "", name: "" });
+      reset({
+        images: [],
+        stack: "",
+        cover: "",
+        description: "",
+        name: "",
+        figma: "",
+        github: "",
+        website: "",
+      });
     } catch (err) {
       setSelectOptions(
         selectOptions.map((opt) => {
@@ -56,7 +65,16 @@ const CreateNewProjectContainer = () => {
       setInitialSelect(true);
       setOpenSnack(true);
       setSnackMessage("Server is not responding");
-      reset({ images: [], stack: "", cover: "", description: "", name: "" });
+      reset({
+        images: [],
+        stack: "",
+        cover: "",
+        description: "",
+        name: "",
+        figma: "",
+        github: "",
+        website: "",
+      });
     }
   };
 
@@ -78,7 +96,7 @@ const CreateNewProjectContainer = () => {
           <span className="font-bold text-2xl">back</span>
         </button>
       </div>
-      <div className="grid grid-cols-2 mt-20 gap-20 ">
+      <div className="grid grid-cols-2 mt-20 gap-20 text-base">
         <div className="grid gap-5">
           <div className="grid gap-5">
             <DropZone
@@ -122,6 +140,7 @@ const CreateNewProjectContainer = () => {
             <input
               className="w-full border-2 border-black outline-none rounded-md px-3 py-2 placeholder-black"
               type="text"
+              autoComplete="off"
               placeholder="Name"
               {...register("name", {
                 required: {
@@ -139,6 +158,7 @@ const CreateNewProjectContainer = () => {
             <input
               className="w-full border-2 border-black outline-none rounded-md px-3 py-2 placeholder-black"
               type="text"
+              autoComplete="off"
               placeholder="Github"
               {...register("github", {
                 required: {
@@ -153,17 +173,30 @@ const CreateNewProjectContainer = () => {
           </div>
 
           <div className="grid gap-2">
+            <label>Figma</label>
+            <input
+              className="w-full border-2 border-black outline-none rounded-md px-3 py-2 placeholder-black"
+              type="text"
+              placeholder="Figma"
+              {...register("figma", {
+                required: {
+                  message: "Figma link is required",
+                  value: true,
+                },
+              })}
+            />
+            {errors.figma && (
+              <p className="text-danger font-bold">{errors.figma?.message}</p>
+            )}
+          </div>
+          <div className="grid gap-2">
             <label>Website</label>
             <input
               className="w-full border-2 border-black outline-none rounded-md px-3 py-2 placeholder-black"
               type="text"
+              autoComplete="off"
               placeholder="Website"
-              {...register("website", {
-                required: {
-                  message: "Website is required",
-                  value: true,
-                },
-              })}
+              {...register("website", {})}
             />
             {errors.website && (
               <p className="text-danger font-bold">{errors.website?.message}</p>

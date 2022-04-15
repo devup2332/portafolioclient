@@ -26,7 +26,7 @@ const About = () => {
         <h1 className="text-5xl text-center font-roboto lg:self-end lg:text-7xl xl:text-8xl">
           ABOUT ME
         </h1>
-        <p className="text-center font-robotoMono text-sm leading-6 lg:text-right lg:leading-10">
+        <p className="text-center lg:font-robotoMono text-sm leading-6 lg:text-right lg:leading-10">
           {mainProfile?.about_me}
         </p>
         <button
