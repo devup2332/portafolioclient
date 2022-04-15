@@ -1,80 +1,90 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .sidenav-item {
-    cursor: pointer;
-    span {
-        font-weight: 400;
-        font-size: 14px;
-    }
+  cursor: pointer;
+  span {
+    font-weight: 400;
+    font-size: 14px;
+  }
 }
 
 .about-vector {
-    position: relative;
+  position: relative;
 
-    &::before {
-        content: "";
-        position: absolute;
-        width: 150%;
-        height: 100%;
-        background: #031927;
-        top: 0px;
-        left: -110%;
-        z-index: -1;
-    }
+  &::before {
+    content: "";
+    position: absolute;
+    width: 300%;
+    height: 100%;
+    background: #031927;
+    top: 0px;
+    left: -260%;
+    z-index: -1;
+  }
 }
 
 .projects-classes {
-    position: relative;
+  position: relative;
 
-    &::before {
-        content: "";
-        display: none;
-        position: absolute;
-        width: 1000px;
-        border-radius: 50%;
-        background: #031927;
-        height: 1000px;
-        right: -70%;
-        z-index: -1;
-        top: 0;
-    }
+  &::before {
+    content: "";
+    display: none;
+    position: absolute;
+    width: 1000px;
+    border-radius: 50%;
+    background: #031927;
+    height: 1000px;
+    right: -70%;
+    z-index: -1;
+    top: 0;
+  }
 }
 
 .scroll-custom {
-    scrollbar-width: thin;
-    scrollbar-color: #031927 #ffffff;
+  scrollbar-width: thin;
+  scrollbar-color: #031927 #ffffff;
 
-    &::-webkit-scrollbar-thumb {
-      border-radius: 10px;
-      background: #031927;
-    }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #bababa;
+  }
 
-    &::-webkit-scrollbar {
-      width: 5px;
-    }
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
 }
 
 @media (min-width: 1024px) {
-    .projects-classes {
-        &::before {
-            display: block;
-        }
+  .projects-classes {
+    &::before {
+      display: block;
     }
+  }
 }
 
 .animation-loading {
-    animation: loading 1s infinite linear;
+  animation: loading 1s infinite linear;
 }
 
 @keyframes loading {
-    0% {
-        transform: rotate(0deg);
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 2000px) {
+  .projects-classes {
+    &::before {
+      width: 2000px;
+      height: 2000px;
+      right: -170%;
     }
-    100% {
-        transform: rotate(360deg);
-    }
+  }
 }

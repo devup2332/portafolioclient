@@ -36,4 +36,20 @@ export const stackOptions: Option[] = [
     label: "Material UI",
     selected: false,
   },
+  {
+    label: "Django",
+    selected: false,
+  },
+  {
+    label: "Python",
+    selected: false,
+  },
+  {
+    label: "Koa",
+    selected: false,
+  },
+  {
+    label: "Flask",
+    selected: false,
+  },
 ];

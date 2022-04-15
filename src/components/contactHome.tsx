@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { sendEmailRest } from "../lib/api/email/sendEmail";
+import { separatePhone } from "../lib/utils/separatePhone";
 import { useAppSelector } from "../redux/store";
 import { IconEmail, IconLoading, IconMap, IconPhone } from "./icons";
 import Snackbar from "./molecules/snackbar";
@@ -48,15 +49,16 @@ const ContactHome = () => {
 
   const sendEmail = async (email: any) => {
     setLoading(true);
-    const res = await sendEmailRest(email);
+    await sendEmailRest(email);
     setLoading(false);
     setMessage("Message send successfully");
     setOpen(true);
-    reset()
+    reset();
   };
+
   return (
-    <div id='contact_home_section' className="grid lg:flex lg:gap-10">
-      <div className="bg-primary grid py-16 gap-5 max-w-1180 lg:py-24 lg:w-4/6 lg:rounded-tr-xl lg:rounded-br-xl lg:pl-20 lg:pr-10 xl:pr-32 xl:pl-48 2xl:pl-96">
+    <div id="contact_home_section" className="grid lg:flex lg:gap-10">
+      <div className="bg-primary grid py-16 gap-5 max-w-1180 lg:py-24 lg:w-4/6 lg:rounded-tr-xl lg:rounded-br-xl lg:pl-20 lg:pr-10 xl:pr-31 xl:pl-48 2xl:pl-96 3xl:pl-600 4xl:max-w-1500 4xl:pl-750 5xl:max-w-1800 5xl:pl-900 6xl:pl-1100">
         <h1 className="text-center text-white text-5xl lg:text-7xl lg:text-left xl:text-8xl">
           CONTACT
         </h1>
@@ -73,14 +75,20 @@ const ContactHome = () => {
                     type={input.name === "phone" ? "number" : "text"}
                     autoComplete="off"
                     placeholder={input.placeholder}
-                    className="font-robotoMono text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full xl:h-14"
+                    className="font-roboto text-sm bg-primary outline-none text-white border-white border-2 rounded-md py-2 px-3 w-full xl:h-14"
                     {...register(input.name, {
                       required: {
                         value: true,
-                        message: `${input.name} is required`,
+                        message: `${input.name.toUpperCase()} is required`,
                       },
+                      valueAsNumber: true,
                     })}
                   />
+                  {errors[input.name] && (
+                    <p className="text-danger font-bold font-roboto text-base">
+                      {errors[input.name].message}
+                    </p>
+                  )}
                 </div>
               );
             }
@@ -94,16 +102,21 @@ const ContactHome = () => {
                   {...register(input.name, {
                     required: {
                       value: true,
-                      message: `${input.name} is required`,
+                      message: `${input.name.toUpperCase()} is required`,
                     },
                   })}
                 />
+                {errors[input.name] && (
+                  <p className="text-danger font-bold font-roboto text-base">
+                    {errors[input.name].message}
+                  </p>
+                )}
               </div>
             );
           })}
           <button
             type="submit"
-            className="w-full block flex justify-center gap-3 bg-secondary text-white text-sm rounded-md py-2.5 shadow-sm transition-all hover:shadow-xl font-bold font-robotoMono lg:row-span-1 lg:col-span-2"
+            className="w-full block flex justify-center gap-3 bg-secondary text-white text-sm rounded-md py-2.5 shadow-sm transition-all hover:shadow-xl hover:bg-white hover:text-black font-bold font-robotoMono lg:row-span-1 lg:col-span-2"
           >
             {loading ? (
               <IconLoading className="w-7 fill-current animation-loading" />
@@ -115,7 +128,7 @@ const ContactHome = () => {
         </form>
       </div>
 
-      <div className="py-10 grid gap-10 w-max justify-self-center lg:w-2/6 lg:flex lg:flex-col lg:pr-20 xl:pr-48 2xl:pr-80 lg:py-24">
+      <div className="py-10 grid gap-10 w-max justify-self-center lg:w-2/6 lg:flex lg:flex-col lg:pr-20 xl:pr-48 2xl:pr-80 4xl:pr-750 lg:py-24">
         <h1 className="title-size-custom text-center lg:text-5xl ">
           INFORMATION
         </h1>
@@ -126,7 +139,9 @@ const ContactHome = () => {
         </div>
         <div className="flex  ">
           <IconPhone className="fill-current text-secondary" />
-          <p className="ml-3">+51 {mainProfile.phone}</p>
+          <p className="ml-3">
+            +51 {separatePhone(mainProfile.phone?.toString()!).join(" ")}
+          </p>
         </div>
         <div className="flex ">
           <IconEmail className="fill-current text-secondary" />

@@ -101,7 +101,7 @@ const SelectStack = ({
           transform: openSelect ? "translateY(50px)" : "translateY(0px)",
         }}
         ref={optionsRef}
-        className="w-full group-focus:bg-danger bg-white rounded-md transition-all shadow-2xl max-h-225 overflow-y-scroll opacity-0 absolute top-0 transform translate-y-10 left-0"
+        className="w-full scroll-custom group-focus:bg-danger bg-white rounded-md transition-all shadow-2xl max-h-225 overflow-y-scroll opacity-0 absolute top-0 transform translate-y-10 left-0"
       >
         <ul className="list-none">
           {selectOptions.map((opt, index) => {
