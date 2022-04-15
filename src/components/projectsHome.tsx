@@ -23,14 +23,15 @@ const ProjectsHome = () => {
             >
               <img
                 src={
-                  project.images.filter((img:any) => img.type_image === "cover")[0]
-                    .secure_url
+                  project.images.filter(
+                    (img: any) => img.type_image === "cover"
+                  )[0].secure_url
                 }
                 alt=""
                 className="block max-h-36  w-full object-cover rounded-md max-h-225"
               />
               <div className="flex gap-1">
-                {project.stacks.map((stack:any, index:number) => {
+                {project.stacks.map((stack: any, index: number) => {
                   return (
                     <span
                       key={index}
@@ -44,10 +45,7 @@ const ProjectsHome = () => {
               <div className="flex justify-between items-center ">
                 <h1 className="text-base lg:text-3xl">{project.name}</h1>
                 <div className="flex gap-2">
-                  <button className="group bg-button-2 py-2.5 px-4 rounded-lg transition-all hover:bg-primary ">
-                    <IconWeb className="fill-current transition-all text-black group-hover:text-white" />
-                  </button>
-                  <a href={project.github}>
+                  <a href={project.github} target="_blank">
                     <button className="group bg-button-2 py-2.5 px-4 rounded-lg transition-all hover:bg-primary ">
                       <IconGithub className="fill-current text-black group-hover:text-white transition-all" />
                     </button>
