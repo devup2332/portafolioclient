@@ -20,7 +20,7 @@ const BannerHome = () => {
             {mainProfile?.fullname?.toUpperCase()}
           </h1>
           <p className="font-bold font-roboto lg:text-black lg:text-lg xl:text-3xl">
-            Software Developer
+            Web Developer
           </p>
           <button
             type="button"
