@@ -5,6 +5,6 @@ export const whatsappLink = (message: string, phone?: number | string | undefine
     } else {
         url += "?";
     }
-    url += `text=${message}`;
+    url += `text=${encodeURIComponent(message)}`;
     return url;
 };

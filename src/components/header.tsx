@@ -22,6 +22,7 @@ const Header = ({ setSidenav, sidenav }: HeaderProps) => {
     const message = whatsappMessage();
     const isMobile = verifyMobile();
     const url = whatsappLink(message, mainProfile.phone, isMobile);
+    console.log(url);
     window.open(url);
   };
   const goToAdmin = () => {

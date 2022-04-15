@@ -76,6 +76,7 @@ const SideNav = ({ sidenav, setSidenav }: SideNavProps) => {
     const message = whatsappMessage();
     const isMobile = verifyMobile();
     const url = whatsappLink(message, mainProfile?.phone, isMobile);
+    console.log(url);
     window.open(url);
   };
   useEffect(() => {
